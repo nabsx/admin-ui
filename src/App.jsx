@@ -8,14 +8,24 @@ function App() {
 
   return (
     <>
-      <div>
+      {/* <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
-      </div>
+      </div> */}
+      <div className="flex justify-center items-center gap-8 mt-6">
+  <a href="https://vite.dev" target="_blank">
+    <img src={viteLogo} className="w-20 hover:scale-110 transition" alt="Vite logo" />
+  </a>
+
+  <a href="https://react.dev" target="_blank">
+    <img src={reactLogo} className="w-20 hover:scale-110 transition" alt="React logo" />
+  </a>
+</div>
+      <br />
       <h1 className="bg-blue-200">Vite + React</h1>
       <h3>Sulthan Yustr Suwardhi</h3>
       <div className="card">
