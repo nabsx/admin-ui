@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 html {
   font-size: 75%;
@@ -23,4 +23,5 @@ html {
   --color-special-mainBg: #f4f5f7;
   --color-special-green: #4daf6e;
   --color-special-red: #e73d1c;
+  --color-special-red2: #b83016;
 }
