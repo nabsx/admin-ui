@@ -14,7 +14,7 @@ import {
   balances,
   goals,
   expensesStatistics,
-} from "../data";
+} from "../data/data";
 import { goalService } from "../services/dataService";
 import { AuthContext } from "../context/authContext";
 import AppSnackbar from "../components/Elements/AppSnackbar";
