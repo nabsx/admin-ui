@@ -3,7 +3,7 @@ POST https://jwt-auth-eight-neon.vercel.app/login
 Content-Type: application/json
 
 {
-  "email": "hello@example.com",
+  "email": "111202315254@mhs.dinus.ac.id",
   "password": "123456"
 }
 

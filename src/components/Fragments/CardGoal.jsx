@@ -6,6 +6,22 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 function CardGoal(props) {
   const { data } = props;
+
+  // Handle undefined or empty data
+  if (!data || Object.keys(data).length === 0) {
+    return (
+      <Card
+        title="Goals"
+        desc={
+          <div className="flex flex-col justify-center items-center h-full text-primary">
+            <CircularProgress color="inherit" size={50} enableTrackSlot />
+            Loading Data
+          </div>
+        }
+      />
+    );
+  }
+
   const chartValue = (data.present_amount / data.target_amount) * 100;
   const chartData = (
     <div className="p-2">
@@ -53,23 +69,7 @@ function CardGoal(props) {
     </div>
   );
 
-  return (
-    <>
-      <Card
-        title="Goals"
-        desc={
-          Object.keys(data).length === 0 ? (
-            <div className="flex flex-col justify-center items-center h-full text-primary">
-              <CircularProgress color="inherit" size={50} enableTrackSlot />
-              Loading Data
-            </div>
-          ) : (
-            chartData
-          )
-        }
-      />
-    </>
-  );
+  return <Card title="Goals" desc={chartData} />;
 }
 
 export default CardGoal;
