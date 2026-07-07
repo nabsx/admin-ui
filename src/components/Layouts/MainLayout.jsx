@@ -61,47 +61,52 @@ function MainLayout(props) {
   return (
     <>
       <div className={`flex min-h-screen ${theme.name}`}>
-        <aside className="bg-defaultBlack w-28 sm:w-64 text-special-bg2 flex flex-col justify-between px-7 py-12">
+        <aside className="bg-defaultBlack w-28 sm:w-64 text-special-bg2 flex flex-col justify-between px-4 sm:px-6 py-8">
           <div>
-            <div className="mb-10">
+            <div className="mb-8 sm:mb-12">
               <Logo variant="secondary" />
             </div>
-            {menu.map((item) => (
-              <NavLink
-                key={item.id}
-                to={item.link}
-                className={({ isActive }) =>
-                  `flex px-4 py-3 rounded-md hover:text-white hover:font-bold hover:scale-105 ${
-                    isActive ? "text-white font-bold" : "hover:bg-special-bg3"
-                  }`
-                }
-                children={({ isActive }) => (
-                  <div
-                    style={{
-                      backgroundColor: isActive ? theme.color : "transparent",
-                      display: "flex",
-                      padding: "12px 16px",
-                      borderRadius: "6px",
-                    }}
-                  >
-                    <div className="mx-auto sm:mx-0">{item.icon}</div>
-                    <div className="ms-3 hidden sm:block text-white font-bold">
-                      {item.name}
+            <nav className="space-y-2">
+              {menu.map((item) => (
+                <NavLink
+                  key={item.id}
+                  to={item.link}
+                  className={({ isActive }) =>
+                    `flex px-3 py-3 rounded-md hover:text-white hover:font-bold hover:scale-105 transition ${
+                      isActive ? "text-white font-bold" : "hover:bg-special-bg3"
+                    }`
+                  }
+                  children={({ isActive }) => (
+                    <div
+                      style={{
+                        backgroundColor: isActive ? theme.color : "transparent",
+                        display: "flex",
+                        padding: "10px 12px",
+                        borderRadius: "6px",
+                        width: "100%",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div className="mx-auto sm:mx-0 flex-shrink-0">{item.icon}</div>
+                      <div className="ms-3 hidden sm:block text-white font-bold text-sm">
+                        {item.name}
+                      </div>
                     </div>
-                  </div>
-                )}
-              />
-            ))}
+                  )}
+                />
+              ))}
+            </nav>
           </div>
-          <div className="flex flex-col items-start gap-4">
+
+          <div className="flex flex-col items-start gap-6 mt-8">
             {/* Theme selector */}
-            <div>
-              <div className="text-sm text-gray-300 mb-2">Themes</div>
-              <div className="flex flex-row gap-2 items-center">
+            <div className="w-full">
+              <div className="text-xs sm:text-sm text-gray-400 mb-3 px-3">Themes</div>
+              <div className="flex flex-row gap-2 items-center px-3">
                 {themes.map((t) => (
                   <div
                     key={t.name}
-                    className={`${t.bgcolor} w-5 h-5 rounded-md cursor-pointer hover:scale-110 transition`}
+                    className={`${t.bgcolor} w-6 h-6 rounded-md cursor-pointer hover:scale-125 transition shadow-sm`}
                     onClick={() => setTheme(t)}
                     title={t.name}
                   ></div>
@@ -112,43 +117,40 @@ function MainLayout(props) {
             {/* Dark mode toggle */}
             <button
               onClick={toggleDarkMode}
-              className="flex items-center gap-2 px-3 py-2 rounded-md text-gray-300 hover:text-white hover:bg-special-bg3 transition w-full"
+              className="flex items-center gap-3 px-3 py-3 rounded-md text-gray-400 hover:text-white hover:bg-special-bg3 transition w-full text-sm"
               aria-label="Toggle dark mode"
             >
-              {isDarkMode ? (
-                <>
+              <div className="flex-shrink-0">
+                {isDarkMode ? (
                   <LightModeIcon sx={{ color: "#FDB022", fontSize: 20 }} />
-                  <span className="text-sm hidden sm:inline">Light Mode</span>
-                </>
-              ) : (
-                <>
+                ) : (
                   <DarkModeIcon sx={{ fontSize: 20 }} />
-                  <span className="text-sm hidden sm:inline">Dark Mode</span>
-                </>
-              )}
+                )}
+              </div>
+              <span className="hidden sm:inline">{isDarkMode ? "Light Mode" : "Dark Mode"}</span>
             </button>
           </div>
-          <div>
-            <div onClick={handleLogout} className="cursor-pointer">
+          <div className="flex flex-col gap-4">
+            <div onClick={handleLogout} className="cursor-pointer w-full">
               <div
-                className="flex text-white px-4 py-3 rounded-md"
+                className="flex items-center justify-center sm:justify-start text-white px-3 sm:px-4 py-3 rounded-md hover:opacity-90 transition"
                 style={{ backgroundColor: theme.color }}
               >
-                <div className="mx-auto sm:mx-0">
+                <div className="flex-shrink-0">
                   <Icon.Logout />
                 </div>
-                <div className="ms-3 hidden sm:block">Logout</div>
+                <div className="ms-3 hidden sm:block font-medium">Logout</div>
               </div>
             </div>
-            <div className="border my-10 border-b-special-bg"></div>
-            <div className="flex justify-between items-center">
-              <div>Avatar</div>
-              <div className="hidden sm:block">
-                <div>{user.name}</div>
-                <div>View Profile</div>
+            <div className="border border-b border-special-bg opacity-40"></div>
+            <div className="flex items-center justify-between gap-2 px-3 py-2">
+              <div className="text-xs text-gray-500">Avatar</div>
+              <div className="hidden sm:flex flex-col text-xs">
+                <div className="font-semibold text-gray-300">{user.name}</div>
+                <div className="text-gray-500 hover:text-gray-300 cursor-pointer">View Profile</div>
               </div>
               <div className="hidden sm:block">
-                <Icon.Detail size={15} />
+                <Icon.Detail size={14} />
               </div>
             </div>
           </div>
