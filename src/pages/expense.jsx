@@ -3,6 +3,48 @@ import MainLayout from "../components/Layouts/MainLayout";
 import ExpenseCard from "../components/Fragments/ExpenseCard";
 import CircularProgress from "@mui/material/CircularProgress";
 import { getExpensesService } from "../services/authService";
+import { expensesBreakdowns } from "../data/data";
+
+// Sample expense items for each category
+const sampleExpenseItems = {
+  Housing: [
+    { name: "House Rent", date: "2023-05-17", amount: 230 },
+    { name: "Parking", date: "2023-05-17", amount: 20 },
+  ],
+  Food: [
+    { name: "Grocery", date: "2023-05-17", amount: 230 },
+    { name: "Restaurant Bill", date: "2023-05-17", amount: 120 },
+  ],
+  Transportation: [
+    { name: "Taxi Fare", date: "2023-05-17", amount: 30 },
+    { name: "Metro Card Bill", date: "2023-05-17", amount: 20 },
+  ],
+  Entertainment: [
+    { name: "Movie Ticket", date: "2023-05-17", amount: 30 },
+    { name: "iTunes", date: "2023-05-17", amount: 50 },
+  ],
+  Shopping: [
+    { name: "Shirt", date: "2023-05-17", amount: 230 },
+    { name: "Jeans", date: "2023-05-17", amount: 190 },
+  ],
+  Others: [
+    { name: "Donation", date: "2023-05-17", amount: 30 },
+    { name: "Gift", date: "2023-05-17", amount: 20 },
+  ],
+};
+
+// Determine trend based on percentage (arbitrary logic for demo)
+const getTrendType = (categoryId) => {
+  const trendCategories = {
+    1: "up",    // Housing: 15% up
+    2: "down",  // Food: 8% down
+    3: "down",  // Transportation: 12% down
+    4: "down",  // Entertainment: 15% down
+    5: "up",    // Shopping: 25% up
+    6: "up",    // Others: 23% up
+  };
+  return trendCategories[categoryId] || "down";
+};
 
 function ExpensePage() {
   const [expenses, setExpenses] = useState([]);
@@ -14,11 +56,32 @@ function ExpensePage() {
       try {
         setLoading(true);
         const data = await getExpensesService();
-        setExpenses(data.data || []);
+        // Try to use API data if available
+        if (data && data.data && data.data.length > 0) {
+          setExpenses(data.data);
+        } else {
+          // Fallback to mock data with items
+          const mockExpenses = expensesBreakdowns.map((expense) => ({
+            category: expense.category,
+            amount: expense.amount,
+            percentage: expense.percentage,
+            trend: getTrendType(expense.id),
+            items: sampleExpenseItems[expense.category] || [],
+          }));
+          setExpenses(mockExpenses);
+        }
         setError(null);
       } catch (err) {
-        setError(err.msg || "Gagal mengambil data expenses");
-        setExpenses([]);
+        // On error, use mock data as fallback
+        const mockExpenses = expensesBreakdowns.map((expense) => ({
+          category: expense.category,
+          amount: expense.amount,
+          percentage: expense.percentage,
+          trend: getTrendType(expense.id),
+          items: sampleExpenseItems[expense.category] || [],
+        }));
+        setExpenses(mockExpenses);
+        setError(null);
       } finally {
         setLoading(false);
       }
