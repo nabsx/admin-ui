@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import LabeledInput from "../Elements/LabeledInput";
 import CheckBox from "../Elements/CheckBox";
 import Button from "../Elements/Button";
@@ -6,6 +6,9 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { DarkModeContext } from "../../context/darkModeContext";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email("Email tidak valid").required("Email wajib diisi"),
@@ -13,6 +16,8 @@ const SignInSchema = Yup.object().shape({
 });
 
 function FormSignIn({ onSubmit }) {
+  const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
+
   return (
     <>
       {/* form start */}
@@ -143,6 +148,28 @@ function FormSignIn({ onSubmit }) {
         </Link>
       </div>
       {/* link end */}
+      
+      {/* dark mode toggle start */}
+      <div className="mt-6 flex justify-center">
+        <button
+          onClick={toggleDarkMode}
+          className="flex items-center gap-2 p-3 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+          aria-label="Toggle dark mode"
+        >
+          {isDarkMode ? (
+            <>
+              <LightModeIcon sx={{ color: "#FDB022", fontSize: 20 }} />
+              <span className="text-xs font-medium">Light Mode</span>
+            </>
+          ) : (
+            <>
+              <DarkModeIcon sx={{ color: "#1A1A1A", fontSize: 20 }} />
+              <span className="text-xs font-medium">Dark Mode</span>
+            </>
+          )}
+        </button>
+      </div>
+      {/* dark mode toggle end */}
     </>
   );
 }
