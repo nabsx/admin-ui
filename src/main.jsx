@@ -5,6 +5,7 @@ import "./index.css";
 import { CounterContextProvider } from "./context/counterContext.jsx";
 import { ThemeContextProvider } from "./context/themeContext.jsx";
 import { AuthContextProvider } from "./context/authContext.jsx";
+import { DarkModeContextProvider } from "./context/darkModeContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -12,9 +13,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Parent />
     </CounterContextProvider> */}
     <AuthContextProvider>
-      <ThemeContextProvider>
-        <App />
-      </ThemeContextProvider>
+      <DarkModeContextProvider>
+        <ThemeContextProvider>
+          <App />
+        </ThemeContextProvider>
+      </DarkModeContextProvider>
     </AuthContextProvider>
     {/* <Form /> */}
   </React.StrictMode>

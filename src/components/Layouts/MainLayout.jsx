@@ -2,14 +2,20 @@ import React, { useContext, useState } from "react";
 import Logo from "../Elements/Logo";
 import Input from "../Elements/Input";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import Icon from "../Elements/Icon";
 import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../../context/themeContext";
 import { AuthContext } from "../../context/authContext";
+import { DarkModeContext } from "../../context/darkModeContext";
 import { logoutService } from "../../services/authService";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function MainLayout(props) {
   const { children } = props;
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const themes = [
     { name: "theme-green", bgcolor: "bg-[#299D91]", color: "#299D91" },
@@ -20,6 +26,7 @@ function MainLayout(props) {
   ];
 
   const { theme, setTheme } = useContext(ThemeContext);
+  const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
 
   const menu = [
     { id: 1, name: "Overview", icon: <Icon.Overview />, link: "/" },
@@ -39,6 +46,7 @@ function MainLayout(props) {
   const { user, logout } = useContext(AuthContext);
   const handleLogout = async () => {
     try {
+      setIsLoggingOut(true);
       await logoutService();
       logout();
     } catch (err) {
@@ -46,6 +54,7 @@ function MainLayout(props) {
       if (err.status === 401) {
         logout();
       }
+      setIsLoggingOut(false);
     }
   };
 
@@ -120,16 +129,36 @@ function MainLayout(props) {
                 <span>May 19, 2023</span>
               </div>
             </div>
-            <div className="flex items-center">
-              <div className="me-10">
+            <div className="flex items-center gap-4">
+              <div className="me-4">
                 <NotificationsIcon style={{ color: theme.color }} className="scale-110" />
               </div>
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                aria-label="Toggle dark mode"
+              >
+                {isDarkMode ? (
+                  <LightModeIcon sx={{ color: "#FDB022" }} />
+                ) : (
+                  <DarkModeIcon sx={{ color: theme.color }} />
+                )}
+              </button>
               <Input backgroundColor="bg-white" border="border-white" />
             </div>
           </div>
           <main className="flex-1 px-6 py-4">{children}</main>
         </div>
       </div>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoggingOut}
+      >
+        <div className="flex flex-col items-center gap-4">
+          <CircularProgress color="inherit" />
+          <div className="text-lg font-semibold">Logging Out</div>
+        </div>
+      </Backdrop>
     </>
   );
 }

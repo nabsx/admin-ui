@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  @apply bg-gray-900 text-gray-100;
+}
+
+html.dark main {
+  @apply bg-gray-900;
+}
+
+html.dark .bg-special-mainBg {
+  @apply bg-gray-800;
+}
+
+html.dark .bg-white {
+  @apply bg-gray-800;
+}
+
+html.dark .text-black {
+  @apply text-gray-100;
+}
+
+html.dark .text-gray-03,
+html.dark .text-gray-02,
+html.dark .text-gray-01 {
+  @apply text-gray-400;
+}
+
+html.dark .border-gray-05 {
+  @apply border-gray-700;
+}
+
+html.dark .bg-gray-05 {
+  @apply bg-gray-700;
+}
+
+html.dark .bg-special-bg,
+html.dark .bg-special-bg3 {
+  @apply bg-gray-700;
+}
+
+/* Dark mode for cards and components */
+html.dark .shadow-lg,
+html.dark [class*="shadow"] {
+  @apply shadow-gray-800;
+}

@@ -9,18 +9,21 @@ import CardExpenseBeakdown from "../components/Fragments/CardExpenseBeakdown";
 import CardGoal from "../components/Fragments/CardGoal";
 import {
   transactions,
-  bills,
+  bills as mockBills,
   expensesBreakdowns,
   balances,
   goals,
   expensesStatistics,
 } from "../data/data";
-import { goalService } from "../services/dataService";
+import { goalService, billsService } from "../services/dataService";
 import { AuthContext } from "../context/authContext";
 import AppSnackbar from "../components/Elements/AppSnackbar";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function dashboard() {
   const [goals, setGoals] = useState({});
+  const [bills, setBills] = useState(mockBills);
   const { logout } = useContext(AuthContext);
 
   const [snackbar, setSnackbar] = useState({
@@ -49,8 +52,22 @@ function dashboard() {
     }
   };
 
+  const fetchBills = async () => {
+    try {
+      const data = await billsService();
+      if (data && data.length > 0) {
+        // Transform API data to match UI structure if needed
+        setBills(data);
+      }
+    } catch (err) {
+      // Use mock data as fallback
+      setBills(mockBills);
+    }
+  };
+
   useEffect(() => {
     fetchGoals();
+    fetchBills();
   }, []);
 
   console.log(goals);
