@@ -61,7 +61,7 @@ function MainLayout(props) {
   return (
     <>
       <div className={`flex min-h-screen ${theme.name}`}>
-        <aside className="bg-defaultBlack w-28 sm:w-64 text-special-bg2 flex flex-col justify-between px-7 py-12">
+        <aside className="bg-defaultBlack w-28 sm:w-72 text-special-bg2 flex flex-col justify-between px-7 py-12">
           <div>
             <div className="mb-10">
               <Logo variant="secondary" />
@@ -82,6 +82,7 @@ function MainLayout(props) {
                       display: "flex",
                       padding: "12px 16px",
                       borderRadius: "6px",
+                      width: "100%",
                     }}
                   >
                     <div className="mx-auto sm:mx-0">{item.icon}</div>
@@ -94,13 +95,13 @@ function MainLayout(props) {
             ))}
           </div>
 
-          {/* Theme selector + Dark mode toggle (satu baris horizontal) */}
+          {/* Theme selector + Dark mode toggle */}
           <div className="flex items-center gap-3">
             <span className="text-sm text-gray-300 hidden sm:inline">
               Themes
             </span>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               {themes.map((t) => (
                 <div
                   key={t.name}
