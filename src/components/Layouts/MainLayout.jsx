@@ -93,18 +93,40 @@ function MainLayout(props) {
               />
             ))}
           </div>
-          <div className="flex flex-col items-start gap-2">
-            <div className="text-sm text-gray-300">Themes</div>
-            <div className="flex flex-row gap-2 items-center">
-              {themes.map((t) => (
-                <div
-                  key={t.name}
-                  className={`${t.bgcolor} w-5 h-5 rounded-md cursor-pointer hover:scale-110 transition`}
-                  onClick={() => setTheme(t)}
-                  title={t.name}
-                ></div>
-              ))}
+          <div className="flex flex-col items-start gap-4">
+            {/* Theme selector */}
+            <div>
+              <div className="text-sm text-gray-300 mb-2">Themes</div>
+              <div className="flex flex-row gap-2 items-center">
+                {themes.map((t) => (
+                  <div
+                    key={t.name}
+                    className={`${t.bgcolor} w-5 h-5 rounded-md cursor-pointer hover:scale-110 transition`}
+                    onClick={() => setTheme(t)}
+                    title={t.name}
+                  ></div>
+                ))}
+              </div>
             </div>
+
+            {/* Dark mode toggle */}
+            <button
+              onClick={toggleDarkMode}
+              className="flex items-center gap-2 px-3 py-2 rounded-md text-gray-300 hover:text-white hover:bg-special-bg3 transition w-full"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? (
+                <>
+                  <LightModeIcon sx={{ color: "#FDB022", fontSize: 20 }} />
+                  <span className="text-sm hidden sm:inline">Light Mode</span>
+                </>
+              ) : (
+                <>
+                  <DarkModeIcon sx={{ fontSize: 20 }} />
+                  <span className="text-sm hidden sm:inline">Dark Mode</span>
+                </>
+              )}
+            </button>
           </div>
           <div>
             <div onClick={handleLogout} className="cursor-pointer">
@@ -147,40 +169,6 @@ function MainLayout(props) {
                   className="scale-110"
                 />
               </div>
-              
-              {/* Theme selector */}
-              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-800">
-                <span className="text-xs text-gray-600 dark:text-gray-400">Theme:</span>
-                <div className="flex gap-1">
-                  {themes.map((t) => (
-                    <div
-                      key={t.name}
-                      className={`w-4 h-4 rounded-md cursor-pointer hover:scale-110 transition ${
-                        theme.name === t.name ? "ring-2 ring-offset-1" : ""
-                      }`}
-                      style={{
-                        backgroundColor: t.color,
-                        ringColor: t.color
-                      }}
-                      onClick={() => setTheme(t)}
-                      title={t.name}
-                    ></div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Dark mode toggle */}
-              <button
-                onClick={toggleDarkMode}
-                className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-                aria-label="Toggle dark mode"
-              >
-                {isDarkMode ? (
-                  <LightModeIcon sx={{ color: "#FDB022" }} />
-                ) : (
-                  <DarkModeIcon sx={{ color: theme.color }} />
-                )}
-              </button>
               <Input backgroundColor="bg-white" border="border-white" />
             </div>
           </div>
