@@ -1,0 +1,12 @@
+### login
+POST https://jwt-auth-eight-neon.vercel.app/login
+Content-Type: application/json
+
+{
+  "email": "hello@example.com",
+  "password": "123456"
+}
+
+### logout
+POST https://jwt-auth-eight-neon.vercel.app/logout
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM3LCJuYW1lIjoiSm9obiBEb2UiLCJlbWFpbCI6ImhlbGxvQGV4YW1wbGUuY29tIiwiaWF0IjoxNzgwOTg1NzM3LCJleHAiOjE3ODEwNzIxMzd9.0pBkjpkYzjmQMtPuKzwsY0YXFqUPOoLTJMp-XPRpkTY"
