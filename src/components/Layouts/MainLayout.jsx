@@ -63,15 +63,25 @@ function MainLayout(props) {
                 to={item.link}
                 className={({ isActive }) =>
                   `flex px-4 py-3 rounded-md hover:text-white hover:font-bold hover:scale-105 ${
-                    isActive
-                      ? "bg-primary text-white font-bold"
-                      : "hover:bg-special-bg3"
+                    isActive ? "text-white font-bold" : "hover:bg-special-bg3"
                   }`
                 }
-              >
-                <div className="mx-auto sm:mx-0">{item.icon}</div>
-                <div className="ms-3 hidden sm:block">{item.name}</div>
-              </NavLink>
+                children={({ isActive }) => (
+                  <div
+                    style={{
+                      backgroundColor: isActive ? theme.color : "transparent",
+                      display: "flex",
+                      padding: "12px 16px",
+                      borderRadius: "6px",
+                    }}
+                  >
+                    <div className="mx-auto sm:mx-0">{item.icon}</div>
+                    <div className="ms-3 hidden sm:block text-white font-bold">
+                      {item.name}
+                    </div>
+                  </div>
+                )}
+              />
             ))}
           </div>
           <div>
@@ -88,8 +98,11 @@ function MainLayout(props) {
           </div>
           <div>
             <div onClick={handleLogout} className="cursor-pointer">
-              <div className="flex bg-special-bg3 text-white px-4 py-3 rounded-md">
-                <div className="mx-auto sm:mx-0 text-primary">
+              <div
+                className="flex text-white px-4 py-3 rounded-md"
+                style={{ backgroundColor: theme.color }}
+              >
+                <div className="mx-auto sm:mx-0">
                   <Icon.Logout />
                 </div>
                 <div className="ms-3 hidden sm:block">Logout</div>
@@ -119,7 +132,10 @@ function MainLayout(props) {
             </div>
             <div className="flex items-center">
               <div className="me-10">
-                <NotificationsIcon className="text-primary scale-110" />
+                <NotificationsIcon
+                  style={{ color: theme.color }}
+                  className="scale-110"
+                />
               </div>
               <Input backgroundColor="bg-white" border="border-white" />
             </div>
