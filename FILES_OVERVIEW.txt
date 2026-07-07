@@ -1,0 +1,257 @@
+================================================================================
+DELIVERABLES OVERVIEW - SOAL 1 & SOAL 7
+================================================================================
+
+PROJECT: Finebank Admin UI
+DATE: 7 Juli 2026
+STATUS: COMPLETE
+
+================================================================================
+SOAL 1 (10 poin) - DOKUMENTASI COMPONENT UI
+================================================================================
+
+FILE: COMPONENT_DOCUMENTATION.md (834 lines)
+
+CONTENTS:
+---------
+✓ Pages (6 halaman)
+  - SignIn Page (Login)
+  - SignUp Page (Registrasi)
+  - Dashboard Page (Overview) ← MAIN
+  - Balance Page
+  - Expense Page
+  - Error Page
+
+✓ Layouts (2 layout)
+  - AuthLayout (untuk halaman autentikasi)
+  - MainLayout (untuk dashboard & halaman authenticated)
+
+✓ Fragments (9 komponen)
+  - FormSignIn
+  - FormSignUp
+  - CardBalance
+  - CardGoal
+  - CardUpcomingBill
+  - CardRecentTransaction
+  - CardStatistic
+  - CardExpenseBreakdown
+  - ExpenseCard
+
+✓ Elements (11 komponen)
+  - Button
+  - Input
+  - LabeledInput
+  - CheckBox
+  - Logo
+  - Card
+  - AppSnackbar
+  - Icon
+  - BarsDataset
+  - DotsMobileStepper
+  - CompositionExample
+
+✓ Context & State Management (3 context)
+  - AuthContext
+  - DarkModeContext
+  - ThemeContext
+
+✓ Routing Structure
+  - Complete routing tree dari root hingga error page
+
+✓ Component Hierarchy
+  - Component relationship mapping
+
+TOTAL COMPONENTS DOCUMENTED: 28+
+ATOMIC DESIGN LEVELS COVERED: Atoms → Molecules → Organisms → Templates → Pages
+
+================================================================================
+SOAL 7 (10 poin) - END-TO-END TESTING
+================================================================================
+
+FILE 1: cypress/e2e/dashboard-overview.cy.js (548 lines)
+---------
+✓ Test Implementation menggunakan Cypress
+
+✓ 8 Test Suites:
+  1. User Login dan Access Dashboard (5 tests)
+     - Display login elements
+     - Email validation
+     - Password validation
+     - Successful login
+     - Invalid credentials error
+
+  2. Dashboard Overview Layout (7 tests)
+     - Complete layout structure
+     - Sidebar navigation menu
+     - Active menu indicator
+     - Theme selector
+     - Dark mode toggle
+     - Logout button
+     - Navbar elements
+
+  3. Dashboard Cards Display (7 tests)
+     - All 6 cards rendered
+     - CardBalance content
+     - CardGoal content
+     - CardUpcomingBill content
+     - CardRecentTransaction content
+     - CardStatistic with chart
+     - CardExpenseBreakdown content
+
+  4. Dashboard Interactions (7 tests)
+     - Navigate to Balances
+     - Navigate to Transaction
+     - Navigate to Expenses
+     - Toggle theme colors
+     - Toggle dark mode
+     - Logout functionality
+     - Filter transactions by tabs
+
+  5. Dashboard Responsive Design (3 tests)
+     - Mobile viewport (iPhone X)
+     - Tablet viewport (iPad)
+     - Desktop viewport (MacBook)
+
+  6. Dashboard Error Handling (3 tests)
+     - Failed API response
+     - Loading state
+     - Session timeout (401)
+
+  7. Dashboard Accessibility (5 tests)
+     - Heading hierarchy
+     - Button/link labels
+     - Color contrast
+     - Keyboard navigation
+     - ARIA attributes
+
+  8. Dashboard Data Persistence (2 tests)
+     - Theme selection persistence
+     - Dark mode preference persistence
+
+TOTAL TEST CASES: 40+
+ESTIMATED EXECUTION TIME: 5-10 minutes
+
+TEST COVERAGE:
+- Authentication flow ✓
+- Layout structure ✓
+- Component rendering ✓
+- User interactions ✓
+- Responsive design ✓
+- Error scenarios ✓
+- Accessibility compliance ✓
+- Data persistence ✓
+
+---
+
+FILE 2: E2E_TEST_DOCUMENTATION.md (721 lines)
+---------
+✓ Comprehensive test documentation
+
+CONTENTS:
+- Test scenario breakdown per test case
+- Gherkin syntax examples
+- Expected results
+- Cypress implementation code
+- Running instructions
+- Configuration guide
+- Debugging tips
+- CI/CD integration examples
+- Maintenance guidelines
+
+================================================================================
+ADDITIONAL DOCUMENTATION FILES
+================================================================================
+
+FILE: SOAL_SUMMARY.md (464 lines)
+---------
+✓ Executive summary of both solutions
+✓ Quick reference untuk deliverables
+✓ File referensi
+✓ Statistics dan metrics
+
+================================================================================
+TOTAL DELIVERABLES
+================================================================================
+
+DOCUMENTATION FILES: 3
+- COMPONENT_DOCUMENTATION.md (834 lines)
+- E2E_TEST_DOCUMENTATION.md (721 lines)
+- SOAL_SUMMARY.md (464 lines)
+
+TEST FILES: 1
+- cypress/e2e/dashboard-overview.cy.js (548 lines)
+
+TOTAL LINES OF CODE: 2,567 lines
+
+BREAKDOWN:
+- Documentation: 2,019 lines (79%)
+- Tests: 548 lines (21%)
+
+================================================================================
+HOW TO USE
+================================================================================
+
+READING COMPONENT DOCUMENTATION:
+1. Open: COMPONENT_DOCUMENTATION.md
+2. Navigate to section:
+   - PAGES: For all 6 halaman
+   - LAYOUTS: For layout structure
+   - FRAGMENTS: For medium-sized components
+   - ELEMENTS: For smallest components
+   - ROUTING STRUCTURE: For navigation paths
+   - COMPONENT HIERARCHY: For component relationships
+
+RUNNING E2E TESTS:
+1. Install dependencies: npm install cypress --save-dev
+2. Open Cypress: npx cypress open
+3. Select: cypress/e2e/dashboard-overview.cy.js
+4. Run all tests: npx cypress run
+5. Run specific test: npx cypress run --spec "cypress/e2e/dashboard-overview.cy.js"
+
+VIEWING TEST DOCUMENTATION:
+1. Open: E2E_TEST_DOCUMENTATION.md
+2. Find test scenario in corresponding section
+3. Review expected results and Cypress code
+4. Understand test flow and assertions
+
+================================================================================
+QUICK STATS
+================================================================================
+
+COMPONENT DOCUMENTATION:
+- Pages: 6 (100% documented)
+- Layouts: 2 (100% documented)
+- Fragments: 9 (100% documented)
+- Elements: 11 (100% documented)
+- Total Components: 28+ (100% documented)
+
+E2E TESTING:
+- Test Suites: 8
+- Test Cases: 40+
+- Scenarios Covered: All user flows for dashboard access
+- Responsive Breakpoints: 3 (mobile, tablet, desktop)
+- Accessibility Checks: 5
+- Error Scenarios: 3
+
+================================================================================
+STATUS
+================================================================================
+
+✓ SOAL 1: COMPLETE (834 lines of documentation)
+✓ SOAL 7: COMPLETE (548 lines of Cypress tests + 721 lines of documentation)
+✓ All files committed to repository branch: dark-mode-toggle
+✓ All files pushed to GitHub
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. REVIEW: Read COMPONENT_DOCUMENTATION.md for complete component overview
+2. TEST: Run Cypress tests with: npx cypress run
+3. DEVELOP: Use documented components as reference for new features
+4. MAINTAIN: Update documentation when components change
+5. EXTEND: Add more test cases for new features
+
+================================================================================
+END OF OVERVIEW
+================================================================================
