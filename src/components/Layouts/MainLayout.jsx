@@ -93,18 +93,42 @@ function MainLayout(props) {
               />
             ))}
           </div>
-          <div>
-            Themes
-            <div className="flex flex-col sm:flex-row gap-2 items-center">
+
+          {/* Theme selector + Dark mode toggle (satu baris horizontal) */}
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-gray-300 hidden sm:inline">
+              Themes
+            </span>
+
+            <div className="flex items-center gap-2">
               {themes.map((t) => (
                 <div
                   key={t.name}
-                  className={`${t.bgcolor} w-6 h-6 rounded-md cursor-pointer mb-2`}
+                  className={`${
+                    t.bgcolor
+                  } w-5 h-5 rounded-md cursor-pointer hover:scale-110 transition ${
+                    theme.name === t.name ? "ring-2 ring-white" : ""
+                  }`}
                   onClick={() => setTheme(t)}
+                  title={t.name}
                 ></div>
               ))}
             </div>
+
+            <button
+              onClick={toggleDarkMode}
+              className="flex items-center justify-center w-5 h-5 text-gray-300 hover:text-white transition"
+              aria-label="Toggle dark mode"
+              title={isDarkMode ? "Light Mode" : "Dark Mode"}
+            >
+              {isDarkMode ? (
+                <LightModeIcon sx={{ color: "#FDB022", fontSize: 20 }} />
+              ) : (
+                <DarkModeIcon sx={{ fontSize: 20 }} />
+              )}
+            </button>
           </div>
+
           <div>
             <div onClick={handleLogout} className="cursor-pointer">
               <div
@@ -146,17 +170,6 @@ function MainLayout(props) {
                   className="scale-110"
                 />
               </div>
-              <button
-                onClick={toggleDarkMode}
-                className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-                aria-label="Toggle dark mode"
-              >
-                {isDarkMode ? (
-                  <LightModeIcon sx={{ color: "#FDB022" }} />
-                ) : (
-                  <DarkModeIcon sx={{ color: theme.color }} />
-                )}
-              </button>
               <Input backgroundColor="bg-white" border="border-white" />
             </div>
           </div>

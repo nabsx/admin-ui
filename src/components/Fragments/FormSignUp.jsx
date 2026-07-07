@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import LabeledInput from "../Elements/LabeledInput";
 import Button from "../Elements/Button";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { DarkModeContext } from "../../context/darkModeContext";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 const SignUpSchema = Yup.object().shape({
   name: Yup.string()
@@ -16,6 +19,8 @@ const SignUpSchema = Yup.object().shape({
 });
 
 function FormSignUp({ onSubmit }) {
+  const { isDarkMode, toggleDarkMode } = useContext(DarkModeContext);
+
   return (
     <>
       {/* form start */}

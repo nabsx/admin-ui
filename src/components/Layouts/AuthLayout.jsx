@@ -17,26 +17,26 @@ function AuthLayout(props) {
           theme.name
         } ${isDarkMode ? "dark" : ""}`}
       >
-        <div className="absolute top-6 right-6">
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
-            aria-label="Toggle dark mode"
-          >
-            {isDarkMode ? (
-              <LightModeIcon sx={{ color: "#FDB022" }} />
-            ) : (
-              <DarkModeIcon sx={{ color: "#1A1A1A" }} />
-            )}
-          </button>
-        </div>
-
         <div className="w-full max-w-sm">
           <div className="mb-8">
             <Logo />
           </div>
 
           {children}
+
+          <div className="flex justify-center mt-6">
+            <button
+              onClick={toggleDarkMode}
+              className="flex items-center justify-center hover:opacity-70 transition"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? (
+                <LightModeIcon sx={{ color: "#FDB022", fontSize: 22 }} />
+              ) : (
+                <DarkModeIcon sx={{ fontSize: 22 }} />
+              )}
+            </button>
+          </div>
         </div>
       </main>
     </>
