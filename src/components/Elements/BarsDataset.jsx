@@ -24,10 +24,6 @@ const chartSetting = {
   },
 };
 
-export function valueFormatter(value) {
-  return `${value}mm`;
-}
-
 export default function BarsDataset(props) {
   const { dataset } = props;
   const { theme } = React.useContext(ThemeContext);
